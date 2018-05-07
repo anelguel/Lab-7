@@ -4,3 +4,10 @@ c:\users\max guel\documents\visual studio 2017\Projects\Lab7\Lab7\bin\Debug\Lab7
 c:\users\max guel\documents\visual studio 2017\Projects\Lab7\Lab7\bin\Debug\Lab7.pdb
 c:\users\max guel\documents\visual studio 2017\Projects\Lab7\Lab7\obj\Debug\Lab7.exe
 c:\users\max guel\documents\visual studio 2017\Projects\Lab7\Lab7\obj\Debug\Lab7.pdb
+C:\Users\ane01832\source\repos\Lab-7\Lab7\bin\Debug\Lab7.exe.config
+C:\Users\ane01832\source\repos\Lab-7\Lab7\bin\Debug\Lab7.exe
+C:\Users\ane01832\source\repos\Lab-7\Lab7\bin\Debug\Lab7.pdb
+C:\Users\ane01832\source\repos\Lab-7\Lab7\obj\Debug\Lab7.csprojResolveAssemblyReference.cache
+C:\Users\ane01832\source\repos\Lab-7\Lab7\obj\Debug\Lab7.csproj.CoreCompileInputs.cache
+C:\Users\ane01832\source\repos\Lab-7\Lab7\obj\Debug\Lab7.exe
+C:\Users\ane01832\source\repos\Lab-7\Lab7\obj\Debug\Lab7.pdb

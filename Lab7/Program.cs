@@ -6,117 +6,90 @@ using System.Threading.Tasks;
 
 namespace Lab7
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            bool run = true;
-            while (run == true)
-            {
-                List<Student> studentData = new List<Student>();
+	/*Task: Write a program that will recognize invalid inputs when the user requests information about students in a class.
+	 * The application will:
+	 * 1. Provide information about students in a class.
+	 * 2. Prompt the user to ask about a particular student.
+	 * 3. Give proper responces according to user-submitted information.
+	 * 4. Ask the user if he/she would like to learn about another student.
+	 * Build specifications:
+	 * 1. Account for invalid user input with exceptions.
+	 * 2. Try to incorporate IndexOutOfRange and FormatException
+	 */
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			List<Student> studentData = new List<Student>();
 
-                Student a = new Student("Molly", "Rockford", "Noodles", 1);
-                Student b = new Student("Michelle", "Equador", "Spaghetti", 2);
-                Student c = new Student("Rebecca", "Charlevoix", "Pizza", 3);
-                Student d = new Student("Brianna", "Fairfield", "Gumbo", 4);
-                Student e = new Student("Tammy", "Grand Rapids", "Sushi", 5);
-                Student f = new Student("Lauren", "Plainwell", "Cheeseburgers", 6);
-                Student g = new Student("Karina", "Holland", "Tacos", 7);
-                Student h = new Student("Tommy", "Raleigh", "Indian Red Curries", 8);
-                Student i = new Student("Lisa", "Los Angeles", "Mushroom Masala Dosa", 9);
-                Student j = new Student("Jonaca", "Lansing", "Sushi", 10);
+			studentData.Add(new Student("Molly", "Rockford", "Noodles"));
+			studentData.Add(new Student("Michelle", "Equador", "Spaghetti"));
+			studentData.Add(new Student("Rebecca", "Charlevoix", "Pizza"));
+			studentData.Add(new Student("Brianna", "Fairfield", "Gumbo"));
+			studentData.Add(new Student("Tammy", "Grand Rapids", "Sushi"));
+			studentData.Add(new Student("Lauren", "Plainwell", "Cheeseburgers"));
+			studentData.Add(new Student("Karina", "Holland", "Tacos"));
+			studentData.Add(new Student("Tommy", "Raleigh", "Indian Red Curries"));
+			studentData.Add(new Student("Lisa", "Los Angeles", "Mushroom Masala Dosa"));
+			studentData.Add(new Student("Jonaca", "Lansing", "Sushi"));
+			studentData.Add(new Student("Tanvi", "India", "Chicken Biryani"));
+			studentData.Add(new Student("Anel", "Grand Rapids", "Pizza"));
 
-                studentData.Add(a);
-                studentData.Add(b);
-                studentData.Add(c);
-                studentData.Add(d);
-                studentData.Add(e);
-                studentData.Add(f);
-                studentData.Add(g);
-                studentData.Add(h);
-                studentData.Add(i);
-                studentData.Add(j);
+			bool loopAgain = true;
+			while (loopAgain == true)
+			{
+				try
+				{
+					Console.WriteLine("Welcome to our DEVELOP(her) class.\nWhich student would you like to learn more about? (enter a number 1-12):");
+					int input = Int32.Parse(Console.ReadLine());
+					Console.WriteLine("Student " + input + " is: ");
 
+					studentData[input - 1].GetStudentName();
+					studentData[input - 1].HometownOrFood();
+				}
+				catch (FormatException)
+				{
+					Console.WriteLine("Sorry, that is invalid. Please try again.");
+					loopAgain = true;
+				}
 
-
-                //prompt the user to ask about a particular student
-                Console.WriteLine("Welcome to our DEVELOP(her) class. \n Which student would you like to learn more about? (enter a number 1-10)");
-                int userNoInput = Int32.Parse(Console.ReadLine());
-                foreach (Student s in studentData)
-                {
-                    int accessNumber = s.getStudentNumber();
-
-                    if (accessNumber == userNoInput)
-                    {
-                        string outputName = s.getStudentName();
-                        Console.WriteLine("Student " + accessNumber + " is " + outputName + ". What would you like to know about this student? (enter 'hometown' or 'food'):");
-                        string userFoodOrHome = Console.ReadLine();
-                        foreach (Student t in studentData)
-                        {
-                            string accessFood = s.getFood();
-                            string accessHometown = s.getHometown();
-
-
-                            if (userFoodOrHome == "food")
-                            {
-                                Console.WriteLine(outputName + "'s favorite food is " + accessFood + ". Would you like to know more? (y/n)");
-                                string yesNo = Console.ReadLine();
-                                if (yesNo == "y")
-                                {
-                                    Console.WriteLine(outputName + " is also from " + accessHometown);
-                                    break;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Great. Have a nice day.");
-                                    break;
-                                }
-
-                            }
-                            else if (userFoodOrHome == "hometown")
-                            {
-                                Console.WriteLine(outputName + " is from " + accessHometown + ". Would you like to know more? (y/n)");
-                                string yesNo = Console.ReadLine();
-                                if (yesNo == "y")
-                                {
-                                    Console.WriteLine(outputName + "'s favorite food is also " + accessFood);
-                                    break;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Okay. Have a nice day.");
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-            
-            }
-
-        }
-        public static bool Continue()
-        {
-            Console.WriteLine("do you want to learn more about other classmates? y/n");
-            string input = Console.ReadLine();
-            input = input.ToLower();
-            bool goOn;
-            if (input == "y")
-            {
-                goOn = true;
-            }
-            else if (input == "n")
-            {
-                goOn = false;
-            }
-            else
-            {
-                Console.WriteLine("I don't understand, please try again");
-                goOn = Continue();
-            }
-            return goOn;
-        }
-    }
+				catch (ArgumentOutOfRangeException)
+				{
+					Console.WriteLine("That student does not exist");
+					loopAgain = true;
+				}
+				loopAgain = DoAgain();
+			}
+		}
+		public static bool DoAgain()
+		{
+			string goAgain;
+			Console.WriteLine("Would you like to learn about another student?(Y or N)");
+			goAgain = Console.ReadLine();
+			goAgain = goAgain.ToLower();
+			bool repeat;
+			if (goAgain == "y")
+			{
+				repeat = true;
+			}
+			else if (goAgain == "n")
+			{
+				repeat = false;
+			}
+			else
+			{
+				Console.WriteLine("Sorry not an accurate input");
+				repeat = DoAgain();
+			}
+			return repeat;
+		}
+	}
 }
 
- 
+
+
+
+
+
+
+
